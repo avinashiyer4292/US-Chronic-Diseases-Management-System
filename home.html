@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>US Chronic Diseases Database System</title>
+	<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>  
+	<script src="js/raphael.js"></script>
+	<script type="text/javascript" src="js/jquery.usmap.js"></script>
+	<!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+         
+  <link rel="stylesheet" href="css/home.css" type="text/css">
+
+</head>
+<body>
+<nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo"></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Signup</a></li>
+      </ul>
+    </div>
+ </nav>
+
+ <div class="row jumbotron"></div>
+<div id="map" style="width: 300px; height: 300px;"></div>
+</body>
+<script type="text/javascript">
+	$(document).ready(function() {
+    $('#map').usmap({});
+  });
+</script>
+</html>

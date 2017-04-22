@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>US Chronic Diseases Database</title>
+    <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
+    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+    
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/personal.css">
+     <link rel="stylesheet" type="text/css" href="css/animate.css">
+      <link rel="stylesheet" type="text/css" href="css/bootstrap-multiselect.css">
+  
+  </head>
+  <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+  	<!--banner-->
+	<section id="banner" class="banner">
+		<div class="bg-color">
+			<nav class="navbar navbar-default navbar-fixed-top">
+			  <div class="container">
+			  	<div class="col-md-12" style="background-color: #0CB8B6;">
+				    <div class="navbar-header">
+				      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				      </button>
+				      <!-- <a class="navbar-brand" href="#"><img src="img/logo.png" class="img-responsive" style="width: 140px; margin-top: -16px;"></a> -->
+				    </div>
+				    <div class="collapse navbar-collapse navbar-right" id="myNavbar">
+				      <ul class="nav navbar-nav">
+				        <li class="active"><a href="index.html">Home</a></li>
+				        <li class="active"><a href="disease.html">Diseases</a></li>
+				        <li class="">
+				        	<a class="btn big-login" data-toggle="modal" href="javascript:void(0)" data-target="#loginModal">Login</a>
+				        </li>
+				        <li class="active"><a data-toggle="modal" href="" onclick="totalRecords();">Total</a></li>
+				      </ul>
+				    </div>
+				</div>
+			  </div>
+			</nav>
+			<div class="modal fade login" id="loginModal" aria-hidden="true" style="display: none;">
+		      <div class="modal-dialog login animated">
+    		      <div class="modal-content">
+    		         <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">Login</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="box">
+                             <div class="content">
+                                
+                                <div class="division">
+                                    <div class="line l"></div>
+                                     
+                                    <div class="line r"></div>
+                                </div>
+                                <!-- <div class="error"></div>
+                                <div class="form loginBox" style="display: none;">
+                                    <form method="" action="" accept-charset="UTF-8">
+                                    <input id="email" class="form-control" type="text" placeholder="Email" name="email">
+                                    <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                                    <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
+                                    </form>
+                                </div> -->
+                             </div>
+                        </div>
+                        <div class="box">
+                            <div class="content registerBox" style="display: block;">
+                             <div class="form">
+                                <form method="" html="{:multipart=&gt;true}" data-remote="true" action="" accept-charset="UTF-8">
+                                <input id="email" class="form-control" type="text" placeholder="Email" name="email">
+                                <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                                
+                                <input class="btn btn-default btn-register" type="button" value="Login" name="commit" onclick="loginAjax()">
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+    		      </div>
+		      </div>
+		  </div>
+			<div class="container">
+				<div class="row">
+					<div class="banner-info">
+						<div class="banner-logo text-center">
+							<!-- <img src="img/logo.png" class="img-responsive"> -->
+						</div>
+						<div class="banner-text text-center">
+							<h1 class="white">US Chronic Diseases Database</h1>
+							<p>Find, view and analyze statewise chronic diseases data <br>across the 52 states from 2001 to 2014</p>
+							<!-- <a href="#service" class="btn btn-appoint">View Map</a> -->
+						</div>
+
+
+						<div class="overlay-detail text-center" style="margin-top: 5%; height: 200px;">
+			               <!-- <a href="#service"><i class="fa fa-angle-down"></i></a> -->
+			               <div class="card-container col-md-4">
+								<div class="card">
+									<div class="wrap">
+			               			   <div class="image" id="image1">
+								  		<div class="card-text">
+								  			<h4 style="text-align: center;">State-wise data</h4>
+								  			<p style="text-align:center">View the USA map and search year-wise disease prevalence per state </p>
+								  		</div>
+								  		</div>
+								  	</div>
+								</div>
+			               </div>
+
+			                <div class="card-container col-md-4">
+								<div class="card" onclick="showDiseaseView();">
+									<div class="wrap">
+			               			   <div class="image" id="image2">
+								  		<div class="card-text">
+								  		<h4 style="text-align: center;">Disease-wise data</h4>
+								  			<p style="text-align:center">Visualize data by selecting from seven different diseases</p>
+								  		</div>
+								  		</div>
+								  	</div>
+								</div>
+			               </div>
+
+			               <div class="card-container col-md-4">
+			               		<div class="card"onclick="showYearView();">
+			               			<div class="wrap">
+			               			   <div class="image" id="image3">
+								  		<div class="card-text">
+								  			<h4 style="text-align: center;">Year-wise data</h4>
+								  			<p style="text-align:center">Dataset consists of data over a period of 10 years</p>
+								  		</div>
+								  		</div>
+								  	</div>
+								</div>
+			               </div>
+
+			             </div>		
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--/ banner-->
+	<!--service-->
+	<section id="service" class="section-padding">
+		<div class="container">
+			<div class="mapContainer">
+				<div class="map">
+					<h2 class="ser-title">US Statewise Chronic Diseases Map</h2>
+					<hr class="botm-line">
+					<div id="mapElement" style="height: 40%; width: 100%; margin-left: 10%;"></div>
+				</div>
+				<div class="mapOptions" style="display: none;">
+					<div class="col-md-6 col-md-offset-4 state-name-container">
+						<h3>Selected state is:</h3><h3 class="state-name"></h3>
+					</div>
+
+
+					<div class="dropdown-container col-md-12">
+						
+						<div class="row">
+
+
+								<div class="dropdown col-md-4" id="dropdown1">
+									<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									     Race
+									   </button>
+									   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdownMenu1">
+									    <!--  <a class="dropdown-item" href="#">Action</a> -->
+										</ul>
+								</div>
+
+								<div class="dropdown col-md-4" id="dropdown2">
+									<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									     Disease
+									   </button>
+									   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdownMenu2">
+									    <!--  <a class="dropdown-item" href="#">Action</a> -->
+										</ul>
+								</div>
+
+								
+								 <div class="dropdown col-md-4" id="dropdown3">
+									<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									     Year
+									   </button>
+									   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdownMenu3">
+									   
+										</ul>
+								</div> 
+
+								
+							</div>	
+						</div>
+
+						<div class="chart-container" style="height: 200px;">
+							<button class="chartLoadButton">Submit</button>
+							<canvas id="myChart" width="200" height="200"></canvas>
+							<table class="table table-bordered table-striped table-responsive race-funding-table" style="display: none; margin-top: 20%;">
+										  <thead class="race-funding-table-header" style="width:100%;">
+										    <tr style="width:100%;">
+										      <th style="width:100%;"></th>
+										      <th></th> 
+										    </tr>
+										  </thead>
+										  <tbody class="race-funding-table-body" style="width:100%;">
+										  
+										  </tbody>
+										</table>
+						</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--/ service-->
+	
+    
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- <script src="js/custom.js"></script> -->
+    <script src="js/raphael.js"></script>
+	<script type="text/javascript" src="js/jquery.usmap.js"></script>
+   
+    <script src="node_modules/chart.js/dist/Chart.bundle.min.js"></script>
+   	<script src="js/bootstrap-multiselect.js"></script>
+
+    <script type="text/javascript">
+    var state;
+    	$(document).ready(function() {
+    		$('.btn-login').on('click',function(){
+
+    		});	
+
+    		$('.chartLoadButton').click(function(){
+    			var race = $('#dropdown1').find('button').text().replace('\n','').trim();
+    			var disease = $('#dropdown2').find('button').text().replace('\n','').trim();
+    			var year = $('#dropdown3').find('button').text().replace('\n','').trim();
+    			console.log("race"+ race.trim()+" year: "+year.trim());
+
+    			if(race==='Race' && year==='Year' && disease==='Disease'){
+    				console.log("calling table function....");
+    				$.post('/getAllRacesTableDataByState',{state:state},function(data){
+    					console.log("Data obtained: "+data);
+    					if($('canvas').css('display')!='none')
+    						$('canvas').css('display','none');
+    					if($('.race-funding-table').css('display')==='none')
+    						$('.race-funding-table').css('display','block');
+    					generateTableForAllRacesFundingByState(data);
+
+    				});
+    			}
+
+    			if(race==='Race' && disease==='Disease'){
+    				console.log("calling least common diseases function....");
+
+    				$.post('/getLeastCommonDiseasesByStateAndYear',{state:state,year:year},function(data){
+    						console.log("Data obtained: "+data);
+    						if($('canvas').css('display')!='none')
+    						$('canvas').css('display','none');
+    					if($('.race-funding-table').css('display')==='none')
+    						$('.race-funding-table').css('display','block');
+    						generateLeastCommonDiseasesTable(data);
+
+    				});
+    			}
+
+    			else{
+		    			 $.post('/getStateDataByRaceDiseaseYear',
+		    			 {
+		    			 	race: race,
+		    			 	disease: disease,
+		    			 	year: year,
+		    			 	state: state
+		    			 }
+		    			 ,function(data){
+		    			  	console.log("data obtained: "+data.avgdatavalueOut+ " "+data.avglowdatavalueOut);
+
+		    			  	if($('.race-funding-table').css('display')!='none')
+    							$('.race-funding-table').css('display','none');
+    						if($('canvas').css('display')==='none')
+    							$('canvas').css('display','block');
+		    			  	var array = [data.avglowdatavalueOut,data.avgdatavalueOut,data.avghighdatavalueOut]; 
+		    			  	if(data.avglowdatavalueOut===null)
+		    			  		alert("Data doesnt exist for the selected combination!");
+		    			  	else
+		    			  		generateChart(array,"State-wise disease-affected population");
+		    			  });
+
+    				}
+
+
+    		});
+
+
+		    $('#mapElement').usmap({
+		    	stateStyles: {fill: '#F7F9F9'},
+		    	stateHoverStyles: {fill: '#0CB8B6'},
+		    	showLabels: false,
+		    	click: function(event, data) {
+				    // Output the abbreviation of the state name to the console
+				    console.log(data.name);
+				    state = data.name;
+				    //alert("You clicked: "+data.name);
+				    getState(data.name);
+				  }
+
+
+		    });
+
+		    $(".dropdown-menu").on('click','li a',function(){
+		    	
+		    	console.log("" +$(this).attr('id') +" "+$(this).text());
+		      $(this).closest('.dropdown').find('.dropdown-toggle').text($(this).text());
+		      $(this).closest('.dropdown').find('.dropdown-toggle').val($(this).text());
+		   });
+  			
+		  });
+
+    	function getState(state){
+    		
+    		$.post('getStateById',{id: state },function(data){
+    			$('.state-name').text(" "+data);
+    		});
+    		var mapOptions = $('.mapOptions');
+    		if(mapOptions.css('display')==='none'){
+    			mapOptions.css('display','block');
+    		}
+    		callMapOptions();
+    	}
+
+    	function callMapOptions(){
+    		 $.get('/getRaces',function(data){
+    		 		//alert(data);
+    		 	loadDropdowns(data,1);
+    		 });
+
+    		$.get('/getDiseases',function(data){
+    			loadDropdowns(data,2);
+    		});
+
+    		$.get('/getYears',function(data){
+    			loadDropdowns(data,3);
+    		});
+
+
+    	}
+
+    	function loadDropdowns(data,id){
+    		var partsOfStr = data.toString().split(",");
+    		for(var i=0;i<data.length;i++){
+
+    					var li= $('<li>',{class: 'dropdown-li'});
+    					var menuItem = $('<a>',{class:'dropdown-item'});
+    					menuItem.text(partsOfStr[i]);
+
+    					li.append(menuItem);
+    					$('#dropdownMenu'+id).append(li);
+    					
+    			}
+    	}
+
+    	function generateChart(array,info){
+    		var ctx = document.getElementById("myChart");
+			var myChart = new Chart(ctx, {
+			    type: 'bar',
+			    data: {
+			        labels: ["Low confidence" ,"Data value" ,"High confidence"],
+			        datasets: [{
+			            label: info,
+			            data: [array[0],array[1],array[2]],
+			            backgroundColor: [
+			                'rgba(255, 99, 132, 0.2)',
+			                'rgba(54, 162, 235, 0.2)',
+			                'rgba(255, 206, 86, 0.2)'
+			                
+			            ],
+			            borderColor: [
+			                'rgba(255,99,132,1)',
+			                'rgba(54, 162, 235, 1)',
+			                'rgba(255, 206, 86, 1)'
+			                
+			            ],
+			            borderWidth: 1
+			        }]
+			    },
+			    options: {
+			        scales: {
+			            yAxes: [{
+			                ticks: {
+			                    beginAtZero:true
+			                }
+			            }]
+			        }
+			    }
+			});
+    	}
+
+    	function generateTableForAllRacesFundingByState(array){
+    			console.log("generating table....");
+
+    			$('.chart-container').append('<h4>Total funding by government in the selected state according to race/ethnicity</h4>');
+    			$('.race-funding-table-header').find('th:first-child').text('Race');
+    			$('.race-funding-table-header').find('th:nth-child(2)').text('Funding (in $)');
+    			for(var i=0;i<array.length;i++){
+    				var tr = $('<tr>');
+    				tr.css("width","100%");
+
+    				var td1 = $('<td>');
+    				var td2 = $('<td>');
+
+    				td1.css("width","100%");
+    				var parts = array[i].toString().split(",");
+    				td1.text(parts[0]);
+    				td2.text(parts[1]);
+
+    				tr.append(td1);
+    				tr.append(td2);
+
+    				$('.race-funding-table-body').append(tr);
+    			}
+    	}
+
+    	function generateLeastCommonDiseasesTable(array){
+    			console.log("generating table ....");
+    			$('.chart-container').append('<h4>3 least common diseases in the selected state and year</h4>');
+    			$('.race-funding-table-header').find('th:first-child').text('Disease');
+    			$('.race-funding-table-header').find('th:nth-child(2)').text('Value (in %)');
+    			for(var i=0;i<array.length;i++){
+    				var tr = $('<tr>');
+    				tr.css("width","100%");
+    				var td1 = $('<td>');
+    				var td2 = $('<td>');
+
+    				td1.css("width","100%");
+    				var parts = array[i].toString().split(",");
+    				td1.text(parts[0]);
+    				td2.text(parts[1]);
+
+    				tr.append(td1);
+    				tr.append(td2);
+
+    				$('.race-funding-table-body').append(tr);
+    			}
+    	}
+
+    	function showDiseaseView(){
+    		location.href = "disease.html";
+    	}
+
+    	function totalRecords(){
+    		$.get('/getTotalRecords',function(data){
+    			//lert("Total no. of records: "+data); 
+    			
+    			text1 = (data[0].toString().split(','))[0] +" "+ (data[0].toString().split(','))[1]+" Records,\n";
+    			text2 = (data[1].toString().split(','))[0] +" "+ (data[1].toString().split(','))[1]+" Records,\n";
+    			text3 = (data[2].toString().split(','))[0] +" "+ (data[2].toString().split(','))[1]+" Records,\n";
+    			text4 = (data[3].toString().split(','))[0] +" "+ (data[3].toString().split(','))[1]+" Records,\n";
+    			text5 = (data[4].toString().split(','))[0] +" "+ (data[4].toString().split(','))[1]+" Records,\n";
+    			text6 = (data[5].toString().split(','))[0] +" "+ (data[5].toString().split(','))[1]+" Records\n";
+    			$("#myModal").modal('show').find('.modal-body p').text("Total no. of records: ");
+
+    			$('.modal-body p').text(text1+text2+text3+text4+text5+text6);
+    			// var modal = $('#myModal');
+       //          modal.
+    		});
+    	}
+    	function loginAjax(){
+    		console.log("Logging in...");
+    		var email = $('#email').val();
+    		var pwd = $('#password').val();
+    		console.log("Email: "+email+" password: "+pwd);
+    		$.post('/login',{email:email, password:pwd},function(data){
+    			console.log("Data login: "+data);
+    			if(data.toString()==='1'){
+    				console.log("Login successful!");
+    				localStorage["email"] = email;
+    				location.href = 'user.html';
+    			}
+    			else{
+    				$("#myModal").modal('show').find('.modal-body p').text("Wrong username or password. Please enter correct credentials! ");
+    			}
+    		});
+
+    	}
+    </script>
+
+    <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+        <p></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+  </body>
+</html>

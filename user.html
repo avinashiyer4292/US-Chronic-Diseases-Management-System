@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>US Chronic Diseases Database</title>
+
+
+    <!-- CSS -->
+    <!-- load bootstrap from CDN and custom CSS -->
+     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/personal.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/user.css">
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+     <script src="node_modules/chart.js/dist/Chart.bundle.min.js"></script>
+      <script src="js/raphael.js"></script>
+  <script type="text/javascript" src="js/jquery.usmap.js"></script>
+    
+   
+    <!-- main Angular app files -->
+</head>
+
+<body> 
+   <nav class="header" style="height: 70px;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2 col-md-offset-10 user-details">
+            <h5>Signed in as: </h5>
+            <h5 class="signed_in_user"></h5>
+          </div>
+
+           <div class="col-md-2 col-md-offset-10 user-details">
+            <button class="log-out">Log out</button>
+          </div>
+        </div>
+      </div>
+   </nav>
+
+
+  <div class="clearfix"></div>
+  
+
+  <section class="content">
+   <div class="container">
+     <div class="row" style="height:10%;">
+       <div class="col-md-6 col-md-offset-3">
+         <div class="dropdown">
+          <button type="button" class="dropdown-button btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            User options
+          </button>
+          <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" id="dropdownMenu2">
+            <li class="dropdown-item"><a class="dropdown-item" href="javascript: showProfitLossOptions();">Find profit/loss data</a></li>
+            <li class="dropdown-item"><a class="dropdown-item" href="javascript:showTopStateOptions();">Find top 5 states</a></li>
+          </ul>
+        </div>
+        </div>
+     </div>
+     </div>
+     </section>
+
+     <section class="profitloss-options" style="display: none; margin-top: 5%;">
+       <div class="container">
+           <div class="row" style="height:10%;">
+             <div class="col-md-6 col-md-offset-3">
+              <div class="col-md-6">
+                <div class="dropdown" id="dropdown1">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       Race
+                     </button>
+                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdownMenu1">
+                      <!--  <a class="dropdown-item" href="#">Action</a> -->
+                    </ul>
+                </div>
+              </div>
+              <div class="col-md-6">
+                   
+                <div class="dropdown" id="dropdown2">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       Disease
+                     </button>
+                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdownMenu3">
+                      <!--  <a class="dropdown-item" href="#">Action</a> -->
+                    </ul>
+                </div> 
+                </div>
+              </div>
+
+
+              <div class="col-md-12">
+                <button class="chartLoadButton" style="display:table;margin:2% auto;">Submit</button>
+              </div>
+            <div class="col-md-12" style="display:table;margin:5% auto;">
+             <h5 class="col-md-12" style="display: table;margin:0 auto;">Assuming cost of medicine = 100$</h5>
+             <div id="mapElement1" style="height: 40%; width: 100%; margin-left: 10%; margin-top: 5%;"></div>
+              <table class="table race-funding-table" style="display: none;">
+                      <thead class="race-funding-table-header">
+                        <tr>
+                          <th></th>
+                          <th></th> 
+                        </tr>
+                      </thead>
+                      <tbody class="race-funding-table-body">
+                      </tbody>
+                    </table>
+             </div>  
+           </div>
+     </div>
+     </section>
+
+     <section class="topstate-options" style="display: none; margin-top: 5%;">
+       <div class="container">
+           <div class="row" style="height:10%;">
+             <div class="col-md-6 col-md-offset-3">
+              <div class="col-md-6">
+                <div class="dropdown" id="dropdown4">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       Disease
+                     </button>
+                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdownMenu4">
+                      <!--  <a class="dropdown-item" href="#">Action</a> -->
+                    </ul>
+                </div>
+              </div>
+              <div class="col-md-6">
+                   
+                <div class="dropdown" id="dropdown5">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       Filter
+                     </button>
+                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdownMenu5">
+                      <!--  <a class="dropdown-item" href="#">Action</a> -->
+                    </ul>
+                </div> 
+                </div>
+              </div>
+
+
+              <div class="col-md-12 top-container">
+                <button class="chartLoadButton" style="display:table;margin:2% auto;">Submit</button>
+              </div>
+            <div class="col-md-12" style="display:table;margin:5% auto;">
+              <!-- <h5 class="query-info2">Assuming cost of medicine = 100$</h5> -->
+              <div id="mapElement2" style="height: 40%; width: 100%; margin-left: 10%; margin-top: 2%;"></div>
+             </div>  
+           </div>
+     </div>
+     </section>
+  
+</body>
+
+  <script type="text/javascript">
+
+    window.onload = function(){
+      var email = localStorage['email'];
+      console.log("Email from index: "+email);
+      $('.signed_in_user').text(email);
+
+    }
+
+    $('.log-out').click(function(){
+      location.href = 'index.html';
+    });
+
+      $('.chartLoadButton').click(function(){
+        var filter = $('#dropdown5').find('button').text().replace('\n','').trim();
+        var disease2 = $('#dropdown4').find('button').text().replace('\n','').trim();
+        var race = $('#dropdown1').find('button').text().replace('\n','').trim();
+          var disease = $('#dropdown2').find('button').text().replace('\n','').trim();
+          var year = $('#dropdown3').find('button').text().replace('\n','').trim();
+          console.log("race"+ race.trim()+" year: "+year.trim()+" disease: "+disease);
+
+
+          if(year==='' && race!='' && disease!=''){
+            console.log("calling profit loss function....");
+            $.post('/getProfitLossPerState',{disease:disease,race:race},function(data){
+              console.log("Data obtained: "+data);
+
+              generateMapForProfitLoss(data);
+              generateTableForProfitLoss(data);
+
+            });
+          }
+
+          if(filter!='' && disease2!=''){
+            console.log("calling top 5 states function....");
+            $.post('/getTopFiveStates',{filter:filter,disease:disease2},function(data){
+              console.log("Data obtained: "+data);
+
+              generateMapForTopFiveStates(data);
+            });
+          }
+
+      });
+
+      function generateMapForProfitLoss(data){
+         console.log("Generating map...");
+
+         var myStyles = {};
+         for(var i=0;i<data.length;i++){
+          var stateID = (data[i].toString().split(','))[0].toString();
+          var value = (data[i].toString().split(','))[1].toString().substring(0,1);
+          
+          if(value==='-')
+          myStyles[stateID] = {fill:'#e15966'};
+          else
+          myStyles[stateID] = {fill: '#74e776'}; 
+
+         }
+          $('#mapElement1').usmap({
+                stateStyles: {fill: '#F7F9F9'},
+                  stateSpecificStyles: myStyles,
+                  stateHoverStyles: {fill: '#F7F9F9'},
+                  showLabels: true
+                });
+      }
+
+      function generateMapForTopFiveStates(data){
+
+              console.log("Generating map...");
+
+              var myStyles ={}; 
+              var state1 = (data[0].toString().split(','))[0].toString();
+              var state2 = (data[1].toString().split(','))[0].toString();
+              var state3 = (data[2].toString().split(','))[0].toString();
+              var state4 = (data[3].toString().split(','))[0].toString();
+              var state5 = (data[4].toString().split(','))[0].toString();
+              var disabledStates = [state1, state2, state3, state4,state5];             
+              
+              myStyles[state1] = {fill:'#066311'};
+              myStyles[state2] = {fill:'#0fa721'};
+              myStyles[state3] = {fill:'#23c136'};
+              myStyles[state4] = {fill:'#4ddb5e'};
+              myStyles[state5] = {fill:'#84e18f'};
+              alert("Top 5 states are: "+state1+" "+state2+" "+state3+" "+state4+" "+state5);
+              console.log(state1+" "+state2);
+              $('#mapElement2').usmap({
+                stateStyles: {fill: '#F7F9F9'},
+                  stateSpecificStyles: myStyles,
+                  stateHoverStyles: {fill: '#F7F9F9'},
+                  showLabels: true
+                  // click: function(event, data) {
+                  //   // Output the abbreviation of the state name to the console
+                  //   console.log(data.name);
+                  //   state = data.name;
+                  //   //alert("You clicked: "+data.name);
+                  //   getState(data.name);
+                  // }
+
+
+                });
+      }
+
+      function generateTableForProfitLoss(array){
+          console.log("generating table....");
+          if($('.race-funding-table').css('display') ==='none')
+              $('.race-funding-table').css('display','block');
+          $('.race-funding-table-header').find('th:first-child').text('State');
+          $('.race-funding-table-header').find('th:nth-child(2)').text('Value (in $)');
+
+          for(var i=0;i<array.length;i++){
+            var tr = $('<tr>');
+
+            var td1 = $('<td>',{class: 'col-md-6'});
+            var td2 = $('<td>',{class: 'col-md-6'});
+            var parts = array[i].toString().split(",");
+            td1.text(parts[0]);
+            td2.text(parts[1]);
+
+              if(parts[1].substring(0,1)==='-')
+
+                {
+                   td1.css('background-color','#e15966');
+                  td2.css('background-color','#e15966');}
+              else
+                   {
+                   td1.css('background-color','#74e776');
+                  td2.css('background-color','#74e776');}
+            tr.append(td1);
+            tr.append(td2);
+
+            $('.race-funding-table-body').append(tr);
+          }
+      }
+
+      function showProfitLossOptions(){
+
+          showProfitLossDivs();
+          callProfitOptions();
+
+      }
+
+      function showProfitLossDivs(){
+        if($('.topstate-options').css('display')!='none')
+            $('.topstate-options').css('display','none');
+
+          if($('.profitloss-options').css('display')==='none')
+            $('.profitloss-options').css('display','block');
+      }
+
+
+
+      function showTopStateOptions(){
+          showTopStateDivs();
+          callTopStateOptions();
+      }
+
+      function showTopStateDivs(){
+        if($('.profitloss-options').css('display')!='none')
+            $('.profitloss-options').css('display','none');
+
+          if($('.topstate-options').css('display')==='none')
+            $('.topstate-options').css('display','block');
+      }
+
+      function callProfitOptions(){
+         $.get('/getRaces',function(data){
+            //alert(data);
+          loadDropdowns(data,1);
+         });
+
+        $.get('/getDiseases',function(data){
+          loadDropdowns(data,3);
+        });
+
+      }
+
+
+      function callTopStateOptions(){
+
+        $.get('/getDiseases',function(data){
+          loadDropdowns(data,4);
+        });
+
+      }
+
+
+      function loadDropdowns(data,id){
+        
+        var partsOfStr = data.toString().split(",");
+        for(var i=0;i<data.length;i++){
+
+              var li= $('<li>',{class: 'dropdown-li'});
+              var menuItem = $('<a>',{class:'dropdown-item'});
+              menuItem.text(partsOfStr[i]);
+
+              li.append(menuItem);
+              $('#dropdownMenu'+id).append(li);
+              
+          }
+      }
+
+       $(".dropdown-menu").on('click','li a',function(){
+          
+          var id = $(this).closest('.dropdown-menu').attr('id');
+          console.log("" +id);
+          $(this).closest('.dropdown').find('.dropdown-toggle').text($(this).text());
+          $(this).closest('.dropdown').find('.dropdown-toggle').val($(this).text());
+
+          
+          if(id==='dropdownMenu4'){
+            
+            var disease = $(this).closest('.dropdown').find('.dropdown-toggle').text();
+            console.log("Disease selected: "+disease);
+            getFiltersForDisease(disease);
+          }
+       });
+
+       function getFiltersForDisease(text){
+        $.post('/getFilters',{disease:text},function(data){
+            console.log("Filters obtained: "+data);
+            loadDropdowns(data,5);
+        });
+       }
+
+  </script>
+</html>

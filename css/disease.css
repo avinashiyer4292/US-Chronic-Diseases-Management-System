@@ -1,0 +1,47 @@
+html,body{
+	height: 100%;
+	width:100%;
+	background-color: #fff !important;
+}
+
+h2{
+	margin-top: 20px;
+}
+.diseaseTabs{
+	margin-top: 5%;
+}
+.diseaseButton{
+	background-color: #0CB8B6;
+	color: #fff;
+	margin: 0 2%;
+}
+
+
+.hiddenDiv ,.hiddenDiv div{
+	display: block;
+	float:left;
+	margin-top: 2%;
+
+}
+
+.dropdown button, .dropdown button:hover{
+    background-color: #0CB8B6;
+    color: #fff;
+    display:table !important;
+    margin:auto !important;
+}
+
+.dropdown-item{
+    width: 100%;
+}
+
+.diseaseName, .chartLoadButton{
+	  display:table !important;
+    margin:10px auto !important;
+    	
+}
+
+
+
+
+
